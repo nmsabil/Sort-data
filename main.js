@@ -14,8 +14,6 @@ let data = [
 
 let sorted = {};
 
-let tableBody = document.querySelector("#tableBody");
-
 // sorting data from array of objects based on status and pushing sorted data into sorted Object of Array.
 // TODO: test
 // function sortData(data) {
@@ -40,20 +38,29 @@ function sortData(data) {
 }
 
 // creates table rows and inserts
-function createTableRow(live, onHold, Expired) {
-  let tr = `<tr id="firstRow">
-              <td id="live">${live}</td>
-              <td id="hold">${onHold}</td>
-              <td id="expired">${Expired}</td>
-            </tr>`;
-  tableBody.innerHTML = tr;
-}
+// function createTable(sorted) {
+//   for (let key in sorted) {
+//     if (sorted.hasOwnProperty(key)) {
+//       createHTML(key, sorted[key], sorted);
+//     }
+//   }
+// }
+let tableHeadRow = document.getElementById("theadrow");
+const tableBodyElement = document.getElementById("tableBody");
 
-function populate(sorted) {
-  for (let i = 0; i < sorted.live.length; i++) {
-    createTableRow(sorted.live, sorted.onHold, sorted.expired);
-  }
+let tableHead = "";
+let tableBody = "";
+
+function createHTML(sorted) {
+  Object.keys(sorted).forEach((key) => {
+    let s = sorted[key];
+    tableHead += `<th scope="col-sm-4">${key}</th>`;
+    tableBody += `<td>${sorted[key]}</td>`;
+  });
+  tableHeadRow.innerHTML = tableHead;
+  tableBodyElement.innerHTML = tableBody.replace(/,/g, " \n ");
 }
 
 sortData(data);
-// populate(sorted);
+
+createHTML(sorted);
