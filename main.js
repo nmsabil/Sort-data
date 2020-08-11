@@ -7,7 +7,7 @@ let data = [
   { title: "Project Manager", status: "live" },
   { title: "Sql developer", status: "Deleted" },
   { title: "Junior Web Developer", status: "Recently Added" },
-  { title: "front end Developer", status: "Recently Added" },
+  { title: "Front end Developer", status: "Recently Added" },
   { title: "Junior full stack Developer", status: "Recently Added" },
   { title: "Junior Web Developer", status: "deleted" },
 ];
@@ -55,10 +55,12 @@ function createHTML(sorted) {
   Object.keys(sorted).forEach((key) => {
     let s = sorted[key];
     tableHead += `<th scope="col-sm-4">${key}</th>`;
+
     tableBody += `<td>${sorted[key]}</td>`;
   });
+
   tableHeadRow.innerHTML = tableHead;
-  tableBodyElement.innerHTML = tableBody.replace(/,/g, " \n ");
+  tableBodyElement.innerHTML = tableBody.replace(/,/g, "</br>");
 }
 
 sortData(data);
